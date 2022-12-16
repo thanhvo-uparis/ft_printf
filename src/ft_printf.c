@@ -6,12 +6,11 @@
 /*   By: tvo <tvo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:52:10 by tvo               #+#    #+#             */
-/*   Updated: 2022/12/16 23:53:51 by tvo              ###   ########.fr       */
+/*   Updated: 2022/12/17 00:17:48 by tvo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
-#include "../include/libft.h"
 
 int	ft_putchar(int c)
 {
@@ -26,6 +25,8 @@ int	ft_format(va_list argptr, const char format)
 	print_length = 0;
 	if (format == 'c')
 		print_length += ft_putchar(va_arg(argptr, int));
+	else if (format == 's')
+		print_length += ft_putstr(va_arg(argptr, char *));
 	return (print_length);
 }
 
@@ -55,9 +56,9 @@ int	ft_printf(const char *str, ...)
 int	main()
 {
 	char i = 'h';
+	char x[] = "back hole :))";
 	// int j = 57;
-	// char x[] = "hello!";
 
-	int res = ft_printf("Coucou %c\n", i);
+	int res = ft_printf("Coucou %c %s\n", i, x);
 	int res2 = printf("Coucou %c\n", i);
 }
