@@ -6,13 +6,13 @@
 /*   By: tvo <tvo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:52:10 by tvo               #+#    #+#             */
-/*   Updated: 2022/12/17 00:17:48 by tvo              ###   ########.fr       */
+/*   Updated: 2022/12/17 20:25:16 by tvo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-int	ft_putchar(int c)
+int	ft_conversion_char(int c)
 {
 	write(1, &c, 1);
 	return (1);
@@ -24,9 +24,19 @@ int	ft_format(va_list argptr, const char format)
 
 	print_length = 0;
 	if (format == 'c')
-		print_length += ft_putchar(va_arg(argptr, int));
+		print_length += ft_conversion_char(va_arg(argptr, int));
 	else if (format == 's')
-		print_length += ft_putstr(va_arg(argptr, char *));
+		print_length += ft_conversion_str(va_arg(argptr, char *));
+	else if (format == 'd' || format == 'i')
+		print_length += ft_conversion_nbr(va_arg(argptr, int));
+	else if (format == 'u')
+		print_length += ft_conversion_unsigned(va_arg(argptr, unsigned int));
+	// else if (format == 'x' || format == 'X')
+	// 	print_length += ft_conversion_hexa(va_arg(argptr, unsigned int), format);
+	// else if (format == '%')
+	// 	print_length += ft_conversion_percent();
+	// else if (format == 'p')
+	// 	print_length += ft_conversion_ptr(va_arg(argptr, unsigned long long));
 	return (print_length);
 }
 
@@ -56,9 +66,10 @@ int	ft_printf(const char *str, ...)
 int	main()
 {
 	char i = 'h';
-	char x[] = "back hole :))";
-	// int j = 57;
+	char x[] = "back hole &&";
+	int j = 57103;
+	int u = 256;
 
-	int res = ft_printf("Coucou %c %s\n", i, x);
-	int res2 = printf("Coucou %c\n", i);
+	int res = ft_printf("Coucou %c %s %d %u\n", i, x, j, u);
+	int res2 = printf("Coucou %c %s %d %u\n", i, x, j, u);
 }

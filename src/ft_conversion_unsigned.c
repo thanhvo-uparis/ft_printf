@@ -6,15 +6,15 @@
 /*   By: tvo <tvo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:56:57 by tvo               #+#    #+#             */
-/*   Updated: 2022/12/17 19:33:30 by tvo              ###   ########.fr       */
+/*   Updated: 2022/12/17 20:24:43 by tvo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-int	ft_len(int nb)
+static int	ft_len(unsigned int nb)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (nb == 0)
@@ -33,13 +33,13 @@ char	*ft_uitoa(unsigned int nb)
 	int		len;
 
 	len = ft_len(nb);
-	ptr = (char *)malloc(sizeof(char) * (ft_len(nb) + 1));
+	ptr = (char *)malloc(sizeof(char) * (len + 1));
 	if (!ptr)
 		return (0);
 	if (nb == 0)
 	{
-		*ptr = '0';
-		*(++ptr) = '\0';
+		ptr[0] = 48;
+		ptr[1] = '\0';
 		return (ptr);
 	}
 	ptr[len] = '\0';
@@ -51,17 +51,17 @@ char	*ft_uitoa(unsigned int nb)
 	return (ptr);
 }
 
-int main()
-{
-	printf("size is %d, str is %s", ft_len(0), ft_uitoa(0));
-}
-
-// int	ft_conversion_unsigned(unsigned int n)
+// int main()
 // {
-// 	int print_length;
-// 	char *str;
-
-// 	str = ft_uitoa(n);
-// 	print_length = ft_conversion_str(str);
-// 	return (print_length);
+// 	printf("size is %d, str is %s", ft_len(0), ft_uitoa(0));
 // }
+
+int	ft_conversion_unsigned(unsigned int n)
+{
+	int		print_length;
+	char	*str;
+
+	str = ft_uitoa(n);
+	print_length = ft_conversion_str(str);
+	return (print_length);
+}
