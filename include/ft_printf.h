@@ -6,7 +6,7 @@
 /*   By: tvo <tvo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 14:54:47 by tvo               #+#    #+#             */
-/*   Updated: 2022/12/17 00:08:52 by tvo              ###   ########.fr       */
+/*   Updated: 2022/12/17 19:48:40 by tvo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,24 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <stdlib.h>
 
-int		ft_printf(const char *format, ...);
-int		ft_formats(va_list args, const char format);
-int	ft_putstr(char *str);
-//last
-int		ft_printchar(int c);
-int		ft_printstr(char *str);
-int		ft_print_ptr(unsigned long long ptr);
-int		ft_printnbr(int n);
-int		ft_print_unsigned(unsigned int n);
-int		ft_print_hex(unsigned int num, const char format);
-int		ft_printpercent(void);
+int	ft_format(va_list argptr, const char format);
+int	ft_printf(const char *str, ...);
+int	ft_conversion_char(int c);
+// conversion string
+void	ft_putstr(char *str);
+int	ft_conversion_str(char *str);
+// conversion number
+int	ft_conversion_nbr(int nb);
 
-// void	ft_putstr(char *str);
-// void	ft_put_ptr(uintptr_t num);
-// int		ft_ptr_len(uintptr_t num);
-char	*ft_uitoa(unsigned int n);
-int		ft_num_len(unsigned	int num);
-void	ft_put_hex(unsigned int num, const char format);
-int		ft_hex_len(unsigned	int num);
+// conversion unsigned
+int	ft_conversion_unsigned(unsigned int n);
 
+// conversion hexadecimal
+
+// conversion percent
+
+// conversion ptr
 
 #endif

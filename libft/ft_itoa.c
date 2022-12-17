@@ -6,13 +6,13 @@
 /*   By: tvo <tvo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:02:34 by tvo               #+#    #+#             */
-/*   Updated: 2022/12/13 22:47:23 by tvo              ###   ########.fr       */
+/*   Updated: 2022/12/17 20:05:27 by tvo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_len(int nb)
+static int	ft_len(int nb)
 {
 	size_t	count;
 
