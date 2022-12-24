@@ -6,7 +6,7 @@
 /*   By: tvo <tvo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 14:54:47 by tvo               #+#    #+#             */
-/*   Updated: 2022/12/17 19:48:40 by tvo              ###   ########.fr       */
+/*   Updated: 2022/12/24 14:10:33 by tvo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
+#include <inttypes.h>
 
 int	ft_format(va_list argptr, const char format);
 int	ft_printf(const char *str, ...);
@@ -31,9 +32,9 @@ int	ft_conversion_nbr(int nb);
 int	ft_conversion_unsigned(unsigned int n);
 
 // conversion hexadecimal
-
+int	ft_conversion_hexa(unsigned int nb, const char format);
 // conversion percent
 
 // conversion ptr
-
+int	ft_conversion_ptr(unsigned long long ptr);
 #endif

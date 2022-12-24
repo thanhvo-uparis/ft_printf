@@ -6,11 +6,12 @@
 /*   By: tvo <tvo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:52:10 by tvo               #+#    #+#             */
-/*   Updated: 2022/12/17 21:04:39 by tvo              ###   ########.fr       */
+/*   Updated: 2022/12/24 14:09:30 by tvo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
+#include "../libft/libft.h"
 
 int	ft_conversion_char(int c)
 {
@@ -35,8 +36,8 @@ int	ft_format(va_list argptr, const char format)
 		print_length += ft_conversion_hexa(va_arg(argptr, unsigned int), format);
 	// else if (format == '%')
 	// 	print_length += ft_conversion_percent();
-	// else if (format == 'p')
-	// 	print_length += ft_conversion_ptr(va_arg(argptr, unsigned long long));
+	else if (format == 'p')
+		print_length += ft_conversion_ptr(va_arg(argptr, unsigned long long));
 	return (print_length);
 }
 
@@ -63,14 +64,14 @@ int	ft_printf(const char *str, ...)
 	return (print_length);
 }
 
-int	main()
-{
-	char i = 'h';
-	char x[] = "back hole &&";
-	int j = 57103;
-	int u = 256;
-	int hexa = 4019;
+// int	main()
+// {
+// 	char i = 'h';
+// 	char x[] = "back hole &&";
+// 	int j = 57103;
+// 	int u = 256;
+// 	int hexa = 4019;
 
-	int res = ft_printf("Coucou %c %s %d %u\n", i, x, j, u);
-	int res2 = printf("Coucou %c %s %d %u %X\n", i, x, j, u, hexa);
-}
+// 	int res = ft_printf("Coucou %c %s %d %u\n", i, x, j, u);
+// 	int res2 = printf("Coucou %c %s %d %u %X\n", i, x, j, u, hexa);
+// }

@@ -1,2 +1,4 @@
 *.out
-
+printfTester
+*.o
+vscode/settings.json

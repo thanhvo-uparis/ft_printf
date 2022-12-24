@@ -6,11 +6,12 @@
 /*   By: tvo <tvo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:56:57 by tvo               #+#    #+#             */
-/*   Updated: 2022/12/17 20:24:43 by tvo              ###   ########.fr       */
+/*   Updated: 2022/12/23 22:12:49 by tvo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
+#include "../libft/libft.h"
 
 static int	ft_len(unsigned int nb)
 {
