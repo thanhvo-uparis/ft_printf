@@ -6,13 +6,11 @@
 #    By: tvo <tvo@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/09 17:11:15 by tvo               #+#    #+#              #
-#    Updated: 2022/12/24 14:14:59 by tvo              ###   ########.fr        #
+#    Updated: 2022/12/24 16:17:22 by tvo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	libft.a
-SRCS_DIR 	=	src/
-OBJS_DIR	=	obj/
 CC			=	gcc
 CFLAGS		=	-Wall -Werror -Wextra -I
 RM			=	rm -f
@@ -32,36 +30,30 @@ WHITE = \033[0;97m
 
 #Sources
 
-FTIS_DIR	=	ft_is/
 FTIS		=	ft_isalnum ft_isalpha ft_isascii ft_isdigit ft_isprint
 
-FTMEM_DIR	=	ft_mem/
 FTMEM		=	ft_bzero ft_calloc ft_memchr ft_memcmp ft_memmove ft_memset
 
-FTPUT_DIR	=	ft_put/
 FTPUT		=	ft_putchar_fd ft_putendl_fd ft_putnbr_fd ft_putstr_fd
 
-FTTO_DIR	=	ft_to/
 FTTO		=	ft_atoi ft_itoa ft_tolower ft_toupper
 
-FTSTR_DIR	=	ft_str/
 FTSTR		=	ft_split ft_strchr ft_strdup ft_striteri ft_strjoin \
 				ft_strlcat ft_strlcpy ft_strlen ft_strmapi ft_strncmp \
 				ft_strnstr ft_strrchr ft_strtrim ft_substr
 
-FTLST_DIR	=	ft_lst/
 FTLST		=	ft_lstadd_back ft_lstadd_front ft_lstclear ft_lstdelone \
 				ft_lstiter ft_lstlast ft_lstmap ft_lstnew ft_lstsize
 
-SRC_FILES+=$(addprefix $(FTIS_DIR),$(FTIS))
-SRC_FILES+=$(addprefix $(FTMEM_DIR),$(FTMEM))
-SRC_FILES+=$(addprefix $(FTPUT_DIR),$(FTPUT))
-SRC_FILES+=$(addprefix $(FTTO_DIR),$(FTTO))
-SRC_FILES+=$(addprefix $(FTSTR_DIR),$(FTSTR))
-SRC_FILES+=$(addprefix $(FTLST_DIR),$(FTLST))
+SRC_FILES+=$(FTIS)
+SRC_FILES+=$(FTMEM)
+SRC_FILES+=$(FTPUT)
+SRC_FILES+=$(FTTO)
+SRC_FILES+=$(FTSTR)
+SRC_FILES+=$(FTLST)
 
-SRCS 		= 	$(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRC_FILES)))
-OBJS 		= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRC_FILES)))
+SRCS 		= $(addsuffix .c, $(SRC_FILES))
+OBJS 		= $(addsuffix .o, $(SRC_FILES))
 
 ###
 
