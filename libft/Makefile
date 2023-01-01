@@ -6,92 +6,61 @@
 #    By: tvo <tvo@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/09 17:11:15 by tvo               #+#    #+#              #
-#    Updated: 2022/12/24 16:17:22 by tvo              ###   ########.fr        #
+#    Updated: 2022/12/13 17:26:11 by tvo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	libft.a
-CC			=	gcc
-CFLAGS		=	-Wall -Werror -Wextra -I
-RM			=	rm -f
-AR			=	ar rcs
+SRCS			=	ft_isalnum.c ft_isprint.c ft_memcmp.c  ft_putchar_fd.c ft_split.c \
+					ft_strncmp.c ft_substr.c ft_atoi.c ft_isalpha.c ft_striteri.c \
+					ft_itoa.c ft_putendl_fd.c ft_strchr.c  ft_strlcpy.c \
+					ft_strnstr.c ft_tolower.c ft_bzero.c   ft_isascii.c ft_memcpy.c \
+					ft_memmove.c  ft_strdup.c  ft_strlen.c  ft_strrchr.c \
+					ft_toupper.c ft_calloc.c  ft_isdigit.c ft_memchr.c  ft_memset.c \
+					ft_putstr_fd.c  ft_strjoin.c ft_strmapi.c ft_strtrim.c ft_strlcat.c \
+					ft_putnbr_fd.c
 
-#Colors
+OBJS			= $(SRCS:.c=.o)
 
-DEF_COLOR = \033[0;39m
-GRAY = \033[0;90m
-RED = \033[0;91m
-GREEN = \033[0;92m
-YELLOW = \033[0;93m
-BLUE = \033[0;94m
-MAGENTA = \033[0;95m
-CYAN = \033[0;96m
-WHITE = \033[0;97m
+DEPS			+= ${SRCS:.c=.d}
 
-#Sources
+BONUS			=	ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c \
+					ft_lstdelone.c ft_lstiter.c ft_lstlast.c \
+					ft_lstmap.c ft_lstnew.c ft_lstsize.c
 
-FTIS		=	ft_isalnum ft_isalpha ft_isascii ft_isdigit ft_isprint
+BONUS_OBJS		= $(BONUS:.c=.o)
 
-FTMEM		=	ft_bzero ft_calloc ft_memchr ft_memcmp ft_memmove ft_memset
+DEPS			+= ${BONUS:.c=.d}
 
-FTPUT		=	ft_putchar_fd ft_putendl_fd ft_putnbr_fd ft_putstr_fd
+CC				= gcc
 
-FTTO		=	ft_atoi ft_itoa ft_tolower ft_toupper
+RM				= rm -f
 
-FTSTR		=	ft_split ft_strchr ft_strdup ft_striteri ft_strjoin \
-				ft_strlcat ft_strlcpy ft_strlen ft_strmapi ft_strncmp \
-				ft_strnstr ft_strrchr ft_strtrim ft_substr
+CFLAGS			= -Wall -Wextra -Werror
 
-FTLST		=	ft_lstadd_back ft_lstadd_front ft_lstclear ft_lstdelone \
-				ft_lstiter ft_lstlast ft_lstmap ft_lstnew ft_lstsize
+NAME			= libft.a
 
-SRC_FILES+=$(FTIS)
-SRC_FILES+=$(FTMEM)
-SRC_FILES+=$(FTPUT)
-SRC_FILES+=$(FTTO)
-SRC_FILES+=$(FTSTR)
-SRC_FILES+=$(FTLST)
+all:			$(NAME)
 
-SRCS 		= $(addsuffix .c, $(SRC_FILES))
-OBJS 		= $(addsuffix .o, $(SRC_FILES))
+$(NAME):		$(OBJS) ${DEPS}
+				ar rc $(NAME) $(OBJS)
 
-###
-
-OBJSF		=	.cache_exists
-
-all:		$(NAME)
-
-$(NAME):	$(OBJS)
-			@$(AR) $(NAME) $(OBJS)
-			@ranlib $(NAME)
-			@echo "$(GREEN)Libft compiled!$(DEF_COLOR)"
-
-$(OBJS_DIR)%.o : $(SRCS_DIR)%.c | $(OBJSF)
-			@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"
-			@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-
-$(OBJSF):
-			@mkdir -p $(OBJS_DIR)
-			@mkdir -p $(OBJS_DIR)$(FTIS_DIR)
-			@mkdir -p $(OBJS_DIR)$(FTMEM_DIR)
-			@mkdir -p $(OBJS_DIR)$(FTPUT_DIR)
-			@mkdir -p $(OBJS_DIR)$(FTTO_DIR)
-			@mkdir -p $(OBJS_DIR)$(FTSTR_DIR)
-			@mkdir -p $(OBJS_DIR)$(FTLST_DIR)
+bonus:			$(OBJS) $(BONUS_OBJS) $(DEPS)
+				ar rc $(NAME) $(OBJS) $(BONUS_OBJS)
 
 clean:
-			@$(RM) -rf $(OBJS_DIR)
-			@$(RM) -f $(OBJSF)
-			@echo "$(BLUE)libft objects files cleaned!$(DEF_COLOR)"
+				$(RM) $(OBJS) $(BONUS_OBJS) ${DEPS}
 
-fclean:		clean
-			@$(RM) -f $(NAME)
-			@echo "$(CYAN)libft executable files cleaned!$(DEF_COLOR)"
+fclean:			clean
+				$(RM) $(NAME)
 
-re:			fclean all
-			@echo "$(GREEN)Cleaned and rebuilt everything for libft!$(DEF_COLOR)"
+re:				fclean $(NAME)
 
-norm:
-	@norminette $(SRCS) $(INCLUDES) | grep -v Norme -B1 || true
+%.o : 			%.c
+				${CC} ${CFLAGS} -c $< -o $@
 
-.PHONY:		all clean fclean re norm
+%.d :			%.c
+				${CC} ${CFLAGS} -MM -c $< -o $@
+
+.PHONY:			all clean fclean re bonus
+
+-include ${DEPS}
